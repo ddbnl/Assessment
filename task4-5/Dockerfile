@@ -7,6 +7,7 @@ COPY config/site.conf /etc/nginx/sites-enabled/default
 COPY config/entrypoint.sh /etc/entrypoint.sh
 
 RUN mkdir /app
+RUN mkdir /app/uploads
 COPY --chown=www-data:www-data app/ /app/
 WORKDIR /app
 VOLUME /app
