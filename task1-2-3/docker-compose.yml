@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+        web:
+            image: nginx:latest
+            ports:
+                - "8123:8123"
+            volumes:
+                - ./app:/app
+                - ./config/site.conf:/etc/nginx/conf.d/site.conf
+                - ./config/nginx.conf:/etc/nginx/nginx.conf
+                - type: tmpfs
+                  target: /var/log/nginx/
+                - type: tmpfs
+                  target: /var/cache/nginx/
+                - type: tmpfs
+                  target: /tmp
+            links:
+                - php
+            read_only: true
+
+        php:
+            image: php:7-fpm
+            volumes:
+                - ./app:/app
+            read_only: true
