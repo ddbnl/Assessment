@@ -8,6 +8,7 @@ COPY config/entrypoint.sh /etc/entrypoint.sh
 
 RUN mkdir /app
 RUN mkdir /app/uploads
+RUN chown -R www-data /app/uploads
 COPY --chown=www-data:www-data app/ /app/
 WORKDIR /app
 VOLUME /app
